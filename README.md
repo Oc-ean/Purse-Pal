@@ -1,6 +1,6 @@
 # Purse Pal
 
-A Basic Budget App.
+A Basic Budget App buils with provider statement management and firebase..
 
 
 ## ScreenShots
