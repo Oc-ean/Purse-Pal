@@ -25,21 +25,36 @@ class LogicModelProvider extends ChangeNotifier {
   List<String> expensesAmount = [];
   List<String> expenseType = [];
   List<IconItem> expenseIcons = [];
+  List<String> expenseIds = [];
+
+  bool showAllIncomeFlag = false;
+  bool showAllExpenseFlag = false;
 
   /// income
   List<String> incomeName = [];
   List<String> incomeAmount = [];
   List<String> incomeType = [];
   List<IconItem> incomeIcons = [];
+  List<String> incomeIds = [];
 
-  final _auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
 
   CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  Future<void> addTransaction(
-    BuildContext context,
-  ) async {
+  void showAllIncome() {
+    showAllIncomeFlag = true;
+    showAllExpenseFlag = false;
+    notifyListeners();
+  }
+
+  void showAllExpense() {
+    showAllExpenseFlag = true;
+    showAllIncomeFlag = false;
+    notifyListeners();
+  }
+
+  Future<void> addTransaction(BuildContext context) async {
     try {
       final formKey = GlobalKey<FormState>();
 
@@ -55,30 +70,39 @@ class LogicModelProvider extends ChangeNotifier {
                 if (formKey.currentState!.validate()) {
                   if (selectedTransactionType == 'expense') {
                     ExpenseModel expenseModel = ExpenseModel(
+                      id: '',
+                      // Add this line
                       name: nameController.text,
                       amount: amountController.text,
                       type: 'expense',
                       icon: selectedIcon!,
                     );
-                    await userCollection
-                        .doc(_auth.currentUser!.uid)
+                    var docRef = await userCollection
+                        .doc(auth.currentUser!.uid)
                         .collection('transactions')
                         .add(expenseModel.toJson()..['type'] = 'expense');
+                    expenseModel.id = docRef.id; // Update the id
+                    expenseIds.add(docRef.id);
                   } else if (selectedTransactionType == 'income') {
                     IncomeModel incomeModel = IncomeModel(
+                      id: '',
                       name: nameController.text,
                       amount: amountController.text,
                       type: 'income',
                       icon: selectedIcon!,
                     );
-                    await userCollection
-                        .doc(_auth.currentUser!.uid)
+                    var docRef = await userCollection
+                        .doc(auth.currentUser!.uid)
                         .collection('transactions')
                         .add(incomeModel.toJson()..['type'] = 'income');
+                    incomeModel.id = docRef.id; // Update the id
+                    incomeIds.add(docRef.id);
                   }
                 }
                 nameController.clear();
                 amountController.clear();
+
+                selectedIcon = null;
                 Navigator.pop(context);
 
                 showSnackBar(context, 'Successfully added', Colors.green);
@@ -101,7 +125,7 @@ class LogicModelProvider extends ChangeNotifier {
 
   Future<void> transactionsStream(String type) async {
     await for (var snapshot in userCollection
-        .doc(_auth.currentUser!.uid)
+        .doc(auth.currentUser!.uid)
         .collection('transactions')
         .where('type', isEqualTo: type)
         .snapshots()) {
@@ -115,6 +139,8 @@ class LogicModelProvider extends ChangeNotifier {
         expensesName = expenses.map((expense) => expense.name).toList();
         expenseType = expenses.map((expense) => expense.type).toList();
         expenseIcons = expenses.map((expense) => expense.icon).toList();
+        expenseIds =
+            expenses.map((expense) => expense.id).toList(); // Add this line
       } else if (type == 'income') {
         income = snapshot.docs.map((doc) {
           return IncomeModel.fromSnap(doc);
@@ -125,9 +151,63 @@ class LogicModelProvider extends ChangeNotifier {
         incomeAmount = income.map((income) => income.amount).toList();
         incomeType = income.map((income) => income.type).toList();
         incomeIcons = income.map((income) => income.icon).toList();
+        incomeIds = income.map((income) => income.id).toList(); // Add this line
       }
       notifyListeners();
     }
+  }
+
+  Future<void> deleteTransaction(String id, String type) async {
+    try {
+      final userCollection = FirebaseFirestore.instance.collection('users');
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+
+      await userCollection
+          .doc(userId)
+          .collection('transactions')
+          .doc(id)
+          .delete();
+
+      removeTransactionById(id, type);
+      print('deleting ');
+      notifyListeners();
+    } catch (e) {
+      print('Error deleting transaction: $e');
+    }
+  }
+
+  void removeTransactionById(String id, String type) {
+    List<String> namesList;
+    List<String> amountsList;
+    List<String> typesList;
+    List<IconItem> iconsList;
+    List<String> idsList;
+
+    if (type == 'expense') {
+      namesList = expensesName;
+      amountsList = expensesAmount;
+      typesList = expenseType;
+      iconsList = expenseIcons;
+      idsList = expenseIds;
+    } else {
+      namesList = incomeName;
+      amountsList = incomeAmount;
+      typesList = incomeType;
+      iconsList = incomeIcons;
+      idsList = incomeIds;
+    }
+
+    final index = idsList.indexOf(id);
+
+    if (index != -1) {
+      namesList.removeAt(index);
+      amountsList.removeAt(index);
+      typesList.removeAt(index);
+      iconsList.removeAt(index);
+      idsList.removeAt(index);
+    }
+    notifyListeners();
+    print('Removing ');
   }
 }
 
@@ -256,5 +336,97 @@ class LogicModelProvider extends ChangeNotifier {
 //       incomeAmount = income.map((income) => income.amount).toList();
 //       notifyListeners();
 //     }
+//   }
+// }
+// Future<void> addTransaction(
+//   BuildContext context,
+// ) async {
+//   try {
+//     final formKey = GlobalKey<FormState>();
+//
+//     return await showDialog(
+//       context: context,
+//       builder: (context) {
+//         return AddTransactionTile(
+//           amountController: amountController,
+//           nameController: nameController,
+//           formKey: formKey,
+//           onTap: () async {
+//             try {
+//               if (formKey.currentState!.validate()) {
+//                 if (selectedTransactionType == 'expense') {
+//                   ExpenseModel expenseModel = ExpenseModel(
+//                     name: nameController.text,
+//                     amount: amountController.text,
+//                     type: 'expense',
+//                     icon: selectedIcon!,
+//                   );
+//                   await userCollection
+//                       .doc(_auth.currentUser!.uid)
+//                       .collection('transactions')
+//                       .add(expenseModel.toJson()..['type'] = 'expense');
+//                 } else if (selectedTransactionType == 'income') {
+//                   IncomeModel incomeModel = IncomeModel(
+//                     name: nameController.text,
+//                     amount: amountController.text,
+//                     type: 'income',
+//                     icon: selectedIcon!,
+//                   );
+//                   await userCollection
+//                       .doc(_auth.currentUser!.uid)
+//                       .collection('transactions')
+//                       .add(incomeModel.toJson()..['type'] = 'income');
+//                 }
+//               }
+//               nameController.clear();
+//               amountController.clear();
+//               Navigator.pop(context);
+//
+//               showSnackBar(context, 'Successfully added', Colors.green);
+//             } catch (e) {
+//               log('Adding Transaction Error  $e');
+//             }
+//           },
+//           transactionIcons: transactionIcons,
+//         );
+//       },
+//     );
+//   } catch (e) {
+//     dialogBox(
+//       context,
+//       e.toString(),
+//     );
+//   }
+//   notifyListeners();
+// }
+
+// Future<void> transactionsStream(String type) async {
+//   await for (var snapshot in userCollection
+//       .doc(_auth.currentUser!.uid)
+//       .collection('transactions')
+//       .where('type', isEqualTo: type)
+//       .snapshots()) {
+//     if (type == 'expense') {
+//       expenses = snapshot.docs.map((doc) {
+//         return ExpenseModel.fromSnap(doc);
+//       }).toList();
+//
+//       // Extracting relevant data
+//       expensesAmount = expenses.map((expense) => expense.amount).toList();
+//       expensesName = expenses.map((expense) => expense.name).toList();
+//       expenseType = expenses.map((expense) => expense.type).toList();
+//       expenseIcons = expenses.map((expense) => expense.icon).toList();
+//     } else if (type == 'income') {
+//       income = snapshot.docs.map((doc) {
+//         return IncomeModel.fromSnap(doc);
+//       }).toList();
+//
+//       // Extracting relevant data
+//       incomeName = income.map((income) => income.name).toList();
+//       incomeAmount = income.map((income) => income.amount).toList();
+//       incomeType = income.map((income) => income.type).toList();
+//       incomeIcons = income.map((income) => income.icon).toList();
+//     }
+//     notifyListeners();
 //   }
 // }

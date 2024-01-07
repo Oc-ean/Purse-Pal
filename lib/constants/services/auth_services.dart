@@ -55,7 +55,7 @@ class AuthService {
       return UserModel.fromSnap(documentSnapshot);
     } catch (e) {
       print("Error in getUserDetails: $e");
-      throw e;
+      rethrow;
     }
   }
 

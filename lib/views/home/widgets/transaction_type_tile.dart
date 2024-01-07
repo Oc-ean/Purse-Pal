@@ -41,25 +41,25 @@ class TransactionType extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 7,
         ),
         Column(
           children: [
             Text(
               typeText,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black54,
                 fontSize: 12,
                 letterSpacing: 0.5,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Row(
               children: [
-                Text(
+                const Text(
                   '\$ ',
                   style: TextStyle(
                     color: Colors.black,
@@ -67,12 +67,12 @@ class TransactionType extends StatelessWidget {
                     letterSpacing: 0.6,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2,
                 ),
                 Text(
                   sign,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black54,
                     fontSize: 12,
                     letterSpacing: 0.6,
@@ -80,7 +80,7 @@ class TransactionType extends StatelessWidget {
                 ),
                 Text(
                   number.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     letterSpacing: 0.6,

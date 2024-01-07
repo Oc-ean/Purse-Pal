@@ -39,6 +39,7 @@ dependencies:
   firebase_core: ^2.15.1
   cloud_firestore: ^4.12.2
   url_strategy: ^0.2.0
+  flutter_slidable: ^3.0.1
   provider: ^6.1.1
 
 dev_dependencies:

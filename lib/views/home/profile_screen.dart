@@ -14,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String name = '';
   String password = '';
 
@@ -30,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       extendBody: true,
       appBar: AppBar(
         elevation: 0.0,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.transparent,
         title: const Text(
           'Profile',

@@ -40,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                   child: Container(
                     height: 150,
                     width: 150,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/app_icon.png'),
                         fit: BoxFit.fitWidth,
@@ -48,7 +48,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
@@ -62,7 +62,7 @@ class SignUpScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           letterSpacing: 0.5),
                     ),
-                    Text(
+                    const Text(
                       'PAL ',
                       style: TextStyle(
                           fontSize: 25,
@@ -71,31 +71,31 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 reusableTextField(
                   controller: appProvider.fullName,
                   hintText: 'Full Name',
                   textInputType: TextInputType.name,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person,
                   ),
                   isObscure: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 reusableTextField(
                   controller: appProvider.emailController,
                   hintText: 'Email',
                   textInputType: TextInputType.emailAddress,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.mail_solid,
                   ),
                   isObscure: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 reusableTextField(
@@ -112,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   isObscure: appProvider.isObscure,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 authButton(
@@ -121,26 +121,26 @@ class SignUpScreen extends StatelessWidget {
                     appProvider.signUpUser(context);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Have an account ?',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     InkWell(
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign In',
                         style: TextStyle(
                           color: Colors.blue,

@@ -43,7 +43,7 @@ class LogInScreen extends StatelessWidget {
                     child: Container(
                       height: 150,
                       width: 150,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/app_icon.png'),
                           fit: BoxFit.fitWidth,
@@ -52,7 +52,7 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
@@ -66,7 +66,7 @@ class LogInScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           letterSpacing: 0.5),
                     ),
-                    Text(
+                    const Text(
                       'PAL ',
                       style: TextStyle(
                           fontSize: 25,
@@ -75,19 +75,19 @@ class LogInScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
                 reusableTextField(
                   controller: authModelProvider.emailController,
                   hintText: 'Email',
                   textInputType: TextInputType.emailAddress,
-                  icon: Icon(
+                  icon: const Icon(
                     CupertinoIcons.mail_solid,
                   ),
                   isObscure: false,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10.0,
                 ),
                 reusableTextField(
@@ -104,7 +104,7 @@ class LogInScreen extends StatelessWidget {
                   ),
                   isObscure: authModelProvider.isObscure,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 authButton(
@@ -113,19 +113,19 @@ class LogInScreen extends StatelessWidget {
                     authModelProvider.loginInUser(context);
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Don\'t have an account ?',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     InkWell(
@@ -133,11 +133,11 @@ class LogInScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => SignUpScreen(),
+                            builder: (context) => const SignUpScreen(),
                           ),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Sign Up',
                         style: TextStyle(
                           color: Colors.blue,

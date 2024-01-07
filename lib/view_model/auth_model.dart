@@ -44,12 +44,12 @@ class AuthModelProvider extends ChangeNotifier {
       }
     } catch (e) {
       print('Error updating user details: $e');
-      throw e;
+      rethrow;
     }
   }
 
   Future<void> isLoggedIn() async {
-    await _auth.authStateChanges().listen((User? user) {
+    _auth.authStateChanges().listen((User? user) {
       // log("isLoggedIn $user");
       if (user == null) {
         _isSignedIn = false;
@@ -73,10 +73,9 @@ class AuthModelProvider extends ChangeNotifier {
           password: passwordController.text,
           context: context);
       if (res != 'success') {
-        showSnackBar(context, 'Processing data');
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
             (route) => false);
         log('Signing up Successful');
       }
@@ -100,11 +99,10 @@ class AuthModelProvider extends ChangeNotifier {
           context: context);
       if (res != 'success') {
         await updateUserDetails();
-        showSnackBar(context, 'Processing data');
 
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen()),
+            MaterialPageRoute(builder: (context) => const HomeScreen()),
             (route) => false);
         log('Login successful');
       }
@@ -125,7 +123,7 @@ class AuthModelProvider extends ChangeNotifier {
 
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => LogInScreen()),
+          MaterialPageRoute(builder: (context) => const LogInScreen()),
           (route) => false);
 
       showSnackBar(context, 'Sign-Out successful');

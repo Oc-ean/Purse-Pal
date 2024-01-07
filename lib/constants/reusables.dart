@@ -10,17 +10,17 @@ dialogBox(BuildContext context, String title) {
       ) {
         return AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
-          contentPadding: EdgeInsets.all(32),
+          contentPadding: const EdgeInsets.all(32),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
+            side: const BorderSide(
               color: Colors.black,
               width: 2.0,
             ),
           ),
           title: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 17.0,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0.5),
@@ -62,7 +62,7 @@ Widget reusableTextField({
           numbers != null ? [FilteringTextInputFormatter.digitsOnly] : [],
       decoration: InputDecoration(
         border: InputBorder.none,
-        contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(color: borderColor ?? Colors.grey.shade100),
@@ -73,18 +73,18 @@ Widget reusableTextField({
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.red,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
+          borderSide: const BorderSide(
             color: Colors.red,
           ),
         ),
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.grey),
+        hintStyle: const TextStyle(color: Colors.grey),
         prefixIcon: icon,
         prefixIconColor: Colors.grey.shade100,
       ),
@@ -159,7 +159,7 @@ class TimeCall extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20.0, top: 15.0),
       child: Text(
         time_call(),
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w500,
           fontSize: 27,
@@ -187,9 +187,9 @@ List<IconItem> transactionIcons = [
   IconItem(icon: Icons.local_movies_sharp, text: 'Entertainment'),
   IconItem(icon: Icons.local_car_wash, text: 'Car Wash'),
 ];
-final apiKey = "AIzaSyDDw6_KWS1WPYcyWwV9eTHpTQjFzSBL8lc";
-final authDomain = "budgetapp-33479.firebaseapp.com";
-final projectId = "budgetapp-33479";
-final storageBucket = "budgetapp-33479.appspot.com";
-final messagingSenderId = "471113091176";
-final appId = "1:471113091176:web:2159187e435b556703d3dd";
+const apiKey = "AIzaSyDDw6_KWS1WPYcyWwV9eTHpTQjFzSBL8lc";
+const authDomain = "budgetapp-33479.firebaseapp.com";
+const projectId = "budgetapp-33479";
+const storageBucket = "budgetapp-33479.appspot.com";
+const messagingSenderId = "471113091176";
+const appId = "1:471113091176:web:2159187e435b556703d3dd";

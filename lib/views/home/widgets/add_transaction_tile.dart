@@ -11,7 +11,7 @@ class AddTransactionTile extends StatefulWidget {
   final VoidCallback onTap;
   final GlobalKey formKey;
   final List<IconItem>? transactionIcons;
-  AddTransactionTile({
+  const AddTransactionTile({
     super.key,
     required this.onTap,
     required this.nameController,
@@ -42,7 +42,7 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
           children: [
             Container(
               width: 200,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 7,
               ),
               decoration: BoxDecoration(
@@ -62,17 +62,14 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                           child: Row(
                             children: [
                               Icon(iconItem.icon),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text(iconItem.text),
                             ],
                           ),
                         ))
                     .toList(),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
-                  // enabledBorder: OutlineInputBorder(
-                  //   borderSide: BorderSide(color: Colors.transparent),
-                  // ),
                   label: Text(
                     'Category',
                     style: TextStyle(color: Colors.black, height: 1.5),
@@ -83,13 +80,13 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
               height: 50,
               width: 200,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 7,
               ),
               decoration: BoxDecoration(
@@ -103,7 +100,7 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                     selectType.selectedTransactionType = value.toString();
                   });
                 },
-                items: [
+                items: const [
                   DropdownMenuItem(
                     value: 'expense',
                     child: Text(
@@ -119,10 +116,10 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                     ),
                   ),
                 ],
-                decoration: InputDecoration(border: InputBorder.none),
+                decoration: const InputDecoration(border: InputBorder.none),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             reusableTextField(
@@ -138,7 +135,7 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                     return 'Required';
                   }
                 }),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             reusableTextField(
@@ -165,21 +162,17 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MaterialButton(
-                  child: Text(
-                    'Add',
-                    style: TextStyle(color: Colors.white),
-                  ),
                   splashColor: Colors.grey,
                   color: Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  onPressed: widget.onTap),
-              MaterialButton(
-                  child: Text(
-                    'Cancel',
+                  onPressed: widget.onTap,
+                  child: const Text(
+                    'Add',
                     style: TextStyle(color: Colors.white),
-                  ),
+                  )),
+              MaterialButton(
                   splashColor: Colors.grey,
                   color: Colors.black,
                   shape: RoundedRectangleBorder(
@@ -187,7 +180,11 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
                   ),
                   onPressed: () {
                     Navigator.pop(context);
-                  }),
+                  },
+                  child: const Text(
+                    'Cancel',
+                    style: TextStyle(color: Colors.white),
+                  )),
             ],
           ),
         ),

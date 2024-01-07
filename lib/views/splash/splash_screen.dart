@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:budget_app/views/auth/login_screen.dart';
-import 'package:budget_app/views/home/home_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_model/auth_model.dart';
+import '../auth/login_screen.dart';
+import '../home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,10 +25,18 @@ class _SplashScreenState extends State<SplashScreen> {
 
       if (authModelProvider.isSignedIn) {
         Navigator.pushReplacement(
-            context, CupertinoPageRoute(builder: (_) => HomeScreen()));
+          context,
+          CupertinoPageRoute(
+            builder: (_) => const HomeScreen(),
+          ),
+        );
       } else {
         Navigator.pushReplacement(
-            context, CupertinoPageRoute(builder: (_) => LogInScreen()));
+          context,
+          CupertinoPageRoute(
+            builder: (_) => const LogInScreen(),
+          ),
+        );
       }
     });
     super.initState();

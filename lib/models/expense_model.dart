@@ -4,16 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'icon_model.dart';
 
 class ExpenseModel {
+  String id;
   String name;
   String amount;
   String type;
   final IconItem icon;
-  ExpenseModel({
-    required this.name,
-    required this.amount,
-    required this.type,
-    required this.icon,
-  });
+  ExpenseModel(
+      {required this.name,
+      required this.amount,
+      required this.type,
+      required this.icon,
+      required this.id});
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['name'] = name;
@@ -23,6 +24,7 @@ class ExpenseModel {
       'icon': icon.icon.codePoint,
       'text': icon.text,
     };
+    data['id'] = id;
 
     return data;
   }
@@ -36,11 +38,12 @@ class ExpenseModel {
         icon: IconData(json['icon']['icon'] ?? 0, fontFamily: 'MaterialIcons'),
         text: json['icon']['text'] ?? '',
       ),
+      id: json['id'] ?? '',
     );
   }
   static ExpenseModel fromSnap(DocumentSnapshot snapshot) {
     var documentSnapShot = snapshot.data() as Map<String, dynamic>;
-    print('==========>$documentSnapShot<========');
+    // print('==========>$documentSnapShot<========');
     return ExpenseModel(
       name: documentSnapShot['name'],
       amount: documentSnapShot['amount'],
@@ -50,6 +53,7 @@ class ExpenseModel {
             fontFamily: 'MaterialIcons'),
         text: documentSnapShot['icon']['text'] ?? '',
       ),
+      id: snapshot.id,
     );
   }
 }
