@@ -15,3 +15,5 @@ A Basic Budget App buils with provider statement management and firebase..
 
 <img src="screenshots/delete.png" width="200"/>                   <img src="screenshots/profile.png" width="200"/>
 ## 🤓 Author(s)
+**Micheal Olatunbosun**
+
