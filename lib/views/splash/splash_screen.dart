@@ -27,14 +27,14 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           CupertinoPageRoute(
-            builder: (_) => const HomeScreen(),
+            builder: (_) => HomeScreen(),
           ),
         );
       } else {
         Navigator.pushReplacement(
           context,
           CupertinoPageRoute(
-            builder: (_) => const LogInScreen(),
+            builder: (_) => LogInScreen(),
           ),
         );
       }

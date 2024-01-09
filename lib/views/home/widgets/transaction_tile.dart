@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+// ignore: must_be_immutable
 class TransactionTile extends StatelessWidget {
   final String text;
   final dynamic amount;
@@ -105,74 +106,6 @@ class TransactionTile extends StatelessWidget {
             ),
           ),
         ),
-        // child: Row(
-        //   children: [
-        //     Container(
-        //       height: 80,
-        //       width: 80,
-        //       decoration: BoxDecoration(
-        //         color: Colors.grey.shade100,
-        //         borderRadius: BorderRadius.circular(7),
-        //       ),
-        //       child: Center(
-        //         child: Icon(
-        //           icon,
-        //           color: Colors.black54,
-        //         ),
-        //       ),
-        //     ),
-        //     SizedBox(
-        //       width: 16,
-        //     ),
-        //     Column(
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: [
-        //         Row(
-        //           children: [
-        //             Expanded(
-        //               child: Text(
-        //                 text,
-        //                 style: TextStyle(
-        //                     fontSize: 16.0,
-        //                     color: Colors.black,
-        //                     fontWeight: FontWeight.w500),
-        //               ),
-        //             ),
-        //             RichText(
-        //               text: TextSpan(
-        //                 children: [
-        //                   TextSpan(
-        //                     text: sign,
-        //                     style: TextStyle(fontSize: 12, color: textColor),
-        //                   ),
-        //                   TextSpan(
-        //                     text: '\$',
-        //                     style: TextStyle(fontSize: 14, color: textColor),
-        //                   ),
-        //                   TextSpan(
-        //                     text: amount,
-        //                     style: TextStyle(fontSize: 14, color: textColor),
-        //                   ),
-        //                 ],
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //         SizedBox(
-        //           height: 7,
-        //         ),
-        //         Text(
-        //           iconText,
-        //           style: TextStyle(
-        //             fontSize: 12,
-        //             color: Colors.black,
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }

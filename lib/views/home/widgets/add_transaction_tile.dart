@@ -30,7 +30,6 @@ class _AddTransactionTileState extends State<AddTransactionTile> {
     var selectType = Provider.of<LogicModelProvider>(context);
     return AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
-      // contentPadding: EdgeInsets.all(32),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
