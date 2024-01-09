@@ -1,16 +1,19 @@
-# budget_app
+# Purse Pal
 
-A new Flutter project.
+A Basic Budget App buils with provider statement management and firebase..
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## ScreenShots
 
-A few resources to get you started if this is your first Flutter project:
+<img src="screenshots/splash.png" width="200"/>           <img src="screenshots/login.png" width="200"/>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src="screenshots/signup.png" width="200"/>           <img src="screenshots/add_transaction.png" width="200"/>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="screenshots/all_transaction.png" width="200"/>        <img src="screenshots/selection.png" width="200"/>
+
+<img src="screenshots/income.png" width="200"/>                 <img src="screenshots/expense.png" width="200"/>
+
+<img src="screenshots/delete.png" width="200"/>                   <img src="screenshots/profile.png" width="200"/>
+## 🤓 Author(s)
+**Micheal Olatunbosun**
+
